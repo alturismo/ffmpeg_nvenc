@@ -66,7 +66,6 @@ ENV         FFMPEG_VERSION=5.1 \
     LIBZMQ_VERSION=4.3.2 \
     LIBSRT_VERSION=1.4.1 \
     LIBARIBB24_VERSION=1.0.3 \
-    LIBPNG_VERSION=1.6.9 \
     LIBVMAF_VERSION=2.1.1 \
     SRC=/usr/local
 
@@ -514,18 +513,6 @@ RUN \
         tar -xz --strip-components=1 -f v${LIBSRT_VERSION}.tar.gz && \
         cmake -DCMAKE_INSTALL_PREFIX="${PREFIX}" . && \
         make && \
-        make install && \
-        rm -rf ${DIR}
-
-## libpng
-RUN \
-        DIR=/tmp/png && \
-        mkdir -p ${DIR} && \
-        cd ${DIR} && \
-        git clone https://git.code.sf.net/p/libpng/code ${DIR} -b v${LIBPNG_VERSION} --depth 1 && \
-        ./autogen.sh && \
-        ./configure --prefix="${PREFIX}" && \
-        make check && \
         make install && \
         rm -rf ${DIR}
 
