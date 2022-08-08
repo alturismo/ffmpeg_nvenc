@@ -109,6 +109,19 @@ RUN      buildDeps="autoconf \
                     python \
                     libssl-dev \
                     yasm \
+		    i965-va-driver \
+                    vainfo \
+                    apt-utils \
+                    libnuma-dev \
+                    libass-dev \
+                    libva-dev \
+                    libmfx-dev \
+                    intel-media-va-driver-non-free \
+                    libsdl2-dev \
+                    libbluray-dev \
+                    libx264-dev \
+                    libx265-dev \
+                    wget \
                     zlib1g-dev" && \
         apt-get -yqq update && \
         apt-get install -yq --no-install-recommends ${buildDeps}
@@ -549,8 +562,11 @@ RUN  \
         --disable-debug \
         --disable-doc \
         --disable-ffplay \
+        --disable-yasm \
+        --enable-vaapi \
+        --enable-libmfx \
         --enable-cuda \
-		--enable-cuda-sdk \
+        --enable-cuda-sdk \
         --enable-cuvid \
         --enable-fontconfig \
         --enable-gpl \
