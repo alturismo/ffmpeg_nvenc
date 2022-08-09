@@ -1,5 +1,11 @@
 FROM nvidia/cuda:11.7.0-devel-ubuntu20.04
-RUN apt update && apt install -y git build-essential yasm cmake libtool libc6 libc6-dev unzip wget libnuma1 libnuma-dev pkg-config
+
+RUN export TZ=Europe/Berlin && \
+    apt-get update && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+    echo $TZ > /etc/timezone
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install git build-essential yasm cmake libtool libc6 libc6-dev unzip wget libnuma1 libnuma-dev pkg-config
 
 RUN git clone https://git.videolan.org/git/ffmpeg/nv-codec-headers.git && \
     cd nv-codec-headers && \
