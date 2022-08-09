@@ -20,7 +20,9 @@ RUN git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg/ && cd ffmpeg && \
 
 RUN rm -rf /ffmpeg
 
-RUN DEBIAN_FRONTEND=noninteractive apt remove -y git cmake g++
+RUN DEBIAN_FRONTEND=noninteractive apt remove -y git cmake g++ && \
+    apt -y autoremove && \
+    apt -y clean
 
 CMD         ["--help"]
 ENTRYPOINT  ["ffmpeg"]
