@@ -1,5 +1,9 @@
 FROM nvidia/cuda:11.7.0-devel-ubuntu20.04 AS devel-base
 
+ENV	    NVIDIA_DRIVER_CAPABILITIES compute,utility,video
+ENV	    DEBIAN_FRONTEND=nonintercative
+WORKDIR     /tmp/workdir
+
 RUN export TZ=Europe/Berlin && \
     apt-get update && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
@@ -15,7 +19,7 @@ RUN git clone https://git.videolan.org/git/ffmpeg/nv-codec-headers.git && \
     rm -rf /nv-codec-headers
 
 RUN git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg/ && cd ffmpeg && \
-    ./configure --enable-nonfree --enable-cuda-nvcc --enable-libnpp --extra-cflags=-I/usr/local/cuda/include --extra-ldflags=-L/usr/local/cuda/lib64 --enable-vaapi --enable-libass --enable-libmfx && \
+    ./configure --enable-nonfree --enable-vaapi --enable-libass --enable-libmfx --enable-cuda --enable-cuvid --enable-cuda-nvcc --enable-libbluray --enable-libnpp --enable-libx264 --enable-libx265 --extra-cflags=-I/usr/local/cuda/include --extra-ldflags=-L/usr/local/cuda/lib64 && \
     make -j 8 && make install
 
 RUN rm -rf /ffmpeg
