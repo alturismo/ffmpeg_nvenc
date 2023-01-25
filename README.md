@@ -1,5 +1,5 @@
 # ffmpeg_nvenc
-ffmpeg incl. sdk 
+ffmpeg incl. sdk
 
 FFmpeg Docker image
 
