@@ -1,4 +1,4 @@
-# ffmpeg - http://ffmpeg.org/download.html
+# ffmpeg - http://ffmpeg.org/download.html 
 #
 # From https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
 #
